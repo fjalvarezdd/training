@@ -55,9 +55,11 @@
   .ex-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
   .input-group { position: relative; }
   .input-group label { display: block; font-size: 0.7em; color: #666; text-transform: uppercase; margin-bottom: 4px; font-weight: 600; }
-  .input-group input { width: 100%; background: #111; border: 2px solid #333; border-radius: 8px; padding: 10px 8px; color: #fff; font-size: 1em; font-weight: 600; text-align: center; outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
-  .input-group input:focus { border-color: #4ecdc4; }
+  .input-group input, .input-group select { width: 100%; background: #111; border: 2px solid #333; border-radius: 8px; padding: 10px 8px; color: #fff; font-size: 1em; font-weight: 600; text-align: center; outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none; }
+  .input-group input:focus, .input-group select:focus { border-color: #4ecdc4; }
   .input-group input::placeholder { color: #444; font-weight: 400; font-size: 0.85em; }
+  .input-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; padding-right: 24px; cursor: pointer; }
+  .input-group select option { background: #111; color: #fff; }
   .input-group .unit { position: absolute; right: 8px; top: 50%; transform: translateY(25%); color: #555; font-size: 0.8em; pointer-events: none; }
   .session-notes { margin-top: 16px; background: #222; border-radius: 10px; padding: 14px 16px; }
   .session-notes label { display: block; font-size: 0.85em; color: #888; margin-bottom: 8px; font-weight: 600; }
@@ -142,8 +144,8 @@
       <div class="ex-note">Pies a la anchura de hombros. Baja hasta 90&deg; en rodillas. No bloquees arriba.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="a" data-exercise="prensa" data-field="weight" data-name="Prensa de piernas" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="a" data-exercise="prensa" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="a" data-exercise="prensa" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="a" data-exercise="prensa" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="a" data-exercise="prensa" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="exercise-row">
@@ -157,8 +159,8 @@
       <div class="ex-note">No levantes la cadera del banco. Aprieta 1 seg arriba.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="a" data-exercise="curl-femoral" data-field="weight" data-name="Curl femoral" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="a" data-exercise="curl-femoral" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="a" data-exercise="curl-femoral" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="a" data-exercise="curl-femoral" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="a" data-exercise="curl-femoral" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="section-divider">PECHO + ESPALDA</div>
@@ -173,8 +175,8 @@
       <div class="ex-note">Agarres a la altura del pecho. Junta los om&oacute;platos contra el respaldo.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="a" data-exercise="press-pecho" data-field="weight" data-name="Press pecho m&aacute;quina" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="a" data-exercise="press-pecho" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="a" data-exercise="press-pecho" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="a" data-exercise="press-pecho" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="a" data-exercise="press-pecho" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="exercise-row">
@@ -188,8 +190,8 @@
       <div class="ex-note">Agarre m&aacute;s ancho que hombros. Codos hacia abajo y atr&aacute;s.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="a" data-exercise="jalon" data-field="weight" data-name="Jal&oacute;n al pecho" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="a" data-exercise="jalon" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="a" data-exercise="jalon" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="a" data-exercise="jalon" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="a" data-exercise="jalon" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="section-divider">HOMBROS</div>
@@ -204,8 +206,8 @@
       <div class="ex-note">No arquees la espalda baja. Si lo haces, baja peso.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="a" data-exercise="press-hombro" data-field="weight" data-name="Press hombro m&aacute;quina" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="a" data-exercise="press-hombro" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="a" data-exercise="press-hombro" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="a" data-exercise="press-hombro" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="a" data-exercise="press-hombro" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="section-divider">CORE</div>
@@ -220,8 +222,8 @@
       <div class="ex-note">L&iacute;nea recta de cabeza a talones. Si no aguantas 20 seg, hazla de rodillas.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Tiempo</label><input type="number" data-session="a" data-exercise="plancha" data-field="weight" data-name="Plancha" data-unit="seg" placeholder="&mdash;" inputmode="numeric"><span class="unit">seg</span></div>
-        <div class="input-group"><label>Series</label><input type="number" data-session="a" data-exercise="plancha" data-field="reps" placeholder="3" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="a" data-exercise="plancha" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Series</label><select data-session="a" data-exercise="plancha" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="a" data-exercise="plancha" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="session-notes">
@@ -254,8 +256,8 @@
       <div class="ex-note">Almohadilla encima de los tobillos. Sube hasta arriba, baja en 2-3 seg.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="b" data-exercise="ext-quad" data-field="weight" data-name="Extensi&oacute;n cu&aacute;driceps" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="b" data-exercise="ext-quad" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="b" data-exercise="ext-quad" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="b" data-exercise="ext-quad" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="b" data-exercise="ext-quad" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="exercise-row">
@@ -269,8 +271,8 @@
       <div class="ex-note">Aprieta gl&uacute;teos arriba 2 seg. No arquees la espalda.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="b" data-exercise="hip-thrust" data-field="weight" data-name="Hip thrust m&aacute;quina" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="b" data-exercise="hip-thrust" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="b" data-exercise="hip-thrust" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="b" data-exercise="hip-thrust" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="b" data-exercise="hip-thrust" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="section-divider">ESPALDA + PECHO</div>
@@ -285,8 +287,8 @@
       <div class="ex-note">Tira hacia el ombligo. Junta los om&oacute;platos. Torso quieto.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="b" data-exercise="remo" data-field="weight" data-name="Remo m&aacute;quina" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="b" data-exercise="remo" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="b" data-exercise="remo" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="b" data-exercise="remo" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="b" data-exercise="remo" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="exercise-row">
@@ -300,8 +302,8 @@
       <div class="ex-note">Movimiento lento. Aprieta pecho cuando los brazos est&aacute;n juntos.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="b" data-exercise="pec-deck" data-field="weight" data-name="Pec deck" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="b" data-exercise="pec-deck" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="b" data-exercise="pec-deck" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="b" data-exercise="pec-deck" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="b" data-exercise="pec-deck" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="section-divider">BRAZOS</div>
@@ -316,8 +318,8 @@
       <div class="ex-note">Codos pegados al cuerpo. Solo se mueven los antebrazos.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="b" data-exercise="curl-biceps" data-field="weight" data-name="Curl b&iacute;ceps polea" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="b" data-exercise="curl-biceps" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="b" data-exercise="curl-biceps" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="b" data-exercise="curl-biceps" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="b" data-exercise="curl-biceps" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="exercise-row">
@@ -331,8 +333,8 @@
       <div class="ex-note">Codos quietos. Empuja hacia abajo y aprieta 1 seg.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="b" data-exercise="triceps" data-field="weight" data-name="Extensi&oacute;n tr&iacute;ceps polea" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="b" data-exercise="triceps" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="b" data-exercise="triceps" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="b" data-exercise="triceps" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="b" data-exercise="triceps" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="section-divider">HOMBROS + CORE</div>
@@ -347,8 +349,8 @@
       <div class="ex-note">Polea a la altura de la cara. Peso ligero, muchas reps.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="b" data-exercise="face-pull" data-field="weight" data-name="Face pull" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="b" data-exercise="face-pull" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="b" data-exercise="face-pull" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="b" data-exercise="face-pull" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="b" data-exercise="face-pull" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="exercise-row">
@@ -362,8 +364,8 @@
       <div class="ex-note">De rodillas, enr&oacute;llate hacia abajo. El movimiento sale de la columna.</div>
       <div class="ex-inputs">
         <div class="input-group"><label>Peso</label><input type="number" data-session="b" data-exercise="cable-crunch" data-field="weight" data-name="Cable crunch" placeholder="&mdash;" inputmode="decimal"><span class="unit">kg</span></div>
-        <div class="input-group"><label>Reps</label><input type="number" data-session="b" data-exercise="cable-crunch" data-field="reps" placeholder="&mdash;" inputmode="numeric"></div>
-        <div class="input-group"><label>RPE</label><input type="number" data-session="b" data-exercise="cable-crunch" data-field="rpe" placeholder="&mdash;" inputmode="decimal" min="1" max="10"></div>
+        <div class="input-group"><label>Reps</label><select data-session="b" data-exercise="cable-crunch" data-field="reps"><option value="" disabled selected>&mdash;</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select></div>
+        <div class="input-group"><label>RPE</label><select data-session="b" data-exercise="cable-crunch" data-field="rpe"><option value="" disabled selected>&mdash;</option><option value="5">5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option></select></div>
       </div>
     </div>
     <div class="session-notes">
@@ -430,8 +432,8 @@ function getSessionData(session) {
 
   exerciseIds.forEach(function(exId) {
     var w = document.querySelector('input[data-session="'+session+'"][data-exercise="'+exId+'"][data-field="weight"]');
-    var r = document.querySelector('input[data-session="'+session+'"][data-exercise="'+exId+'"][data-field="reps"]');
-    var p = document.querySelector('input[data-session="'+session+'"][data-exercise="'+exId+'"][data-field="rpe"]');
+    var r = document.querySelector('[data-session="'+session+'"][data-exercise="'+exId+'"][data-field="reps"]');
+    var p = document.querySelector('[data-session="'+session+'"][data-exercise="'+exId+'"][data-field="rpe"]');
     if (w && w.value) {
       exercises.push({
         name: w.dataset.name || exId,
@@ -532,14 +534,14 @@ function fallbackCopy(text) {
   });
 }
 
-// Auto-save to localStorage
-document.querySelectorAll('input[data-session]').forEach(function(el) {
+// Auto-save to localStorage (inputs + selects)
+document.querySelectorAll('[data-session][data-field]').forEach(function(el) {
   el.addEventListener('change', function() {
     var s = el.dataset.session;
     var data = {};
-    document.querySelectorAll('input[data-session="' + s + '"]').forEach(function(input) {
-      var key = input.dataset.exercise + '_' + input.dataset.field;
-      if (input.value) data[key] = input.value;
+    document.querySelectorAll('[data-session="' + s + '"][data-field]').forEach(function(field) {
+      var key = field.dataset.exercise + '_' + field.dataset.field;
+      if (field.value) data[key] = field.value;
     });
     localStorage.setItem('semana01_' + s, JSON.stringify(data));
   });
@@ -550,9 +552,9 @@ document.querySelectorAll('input[data-session]').forEach(function(el) {
   var saved = localStorage.getItem('semana01_' + s);
   if (saved) {
     var data = JSON.parse(saved);
-    document.querySelectorAll('input[data-session="' + s + '"]').forEach(function(input) {
-      var key = input.dataset.exercise + '_' + input.dataset.field;
-      if (data[key]) input.value = data[key];
+    document.querySelectorAll('[data-session="' + s + '"][data-field]').forEach(function(field) {
+      var key = field.dataset.exercise + '_' + field.dataset.field;
+      if (data[key]) field.value = data[key];
     });
   }
   // Check if already sent
