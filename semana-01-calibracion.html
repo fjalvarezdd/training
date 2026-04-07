@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 1 — Calibración | Fran</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f0f0f;
+    color: #e0e0e0;
+    line-height: 1.6;
+    padding: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 1.5em; color: #fff; text-align: center; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: #888; font-size: 0.9em; margin-bottom: 24px; }
+  .week-view {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .day-row {
+    display: flex;
+    align-items: center;
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  .day-row.active {
+    border: 2px solid #4ecdc4;
+    background: #1a2a28;
+  }
+  .day-row.rest {
+    opacity: 0.5;
+  }
+  .day-label {
+    font-weight: 700;
+    min-width: 36px;
+    color: #888;
+    font-size: 0.85em;
+  }
+  .day-icon { font-size: 1.3em; min-width: 30px; text-align: center; }
+  .day-text { font-size: 0.9em; }
+  .day-text strong { color: #fff; }
+
+  .session-block {
+    background: #1a1a1a;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .session-header {
+    background: #4ecdc4;
+    color: #000;
+    padding: 16px 20px;
+    font-weight: 800;
+    font-size: 1.1em;
+  }
+  .session-header small {
+    display: block;
+    font-weight: 400;
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+  .session-body { padding: 16px; }
+
+  .exercise-row {
+    background: #222;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .exercise-row:last-child { margin-bottom: 0; }
+  .ex-number {
+    display: inline-block;
+    background: #4ecdc4;
+    color: #000;
+    font-weight: 800;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 0.85em;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .ex-name {
+    font-weight: 700;
+    color: #fff;
+    font-size: 1em;
+    vertical-align: middle;
+  }
+  .ex-details {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .ex-detail {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.85em;
+  }
+  .ex-detail .label { color: #888; font-size: 0.75em; text-transform: uppercase; }
+  .ex-detail .value { color: #fff; font-weight: 600; font-size: 1.05em; }
+  .ex-note {
+    margin-top: 8px;
+    background: #1a1a0a;
+    border-left: 3px solid #ffd166;
+    padding: 8px 12px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.82em;
+    color: #ddd;
+  }
+
+  .calibration-guide {
+    background: #1a2a1a;
+    border: 1px solid #4ecdc4;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  .calibration-guide h3 { color: #4ecdc4; margin-bottom: 8px; font-size: 1em; }
+  .calibration-guide ol { padding-left: 20px; font-size: 0.88em; color: #ccc; }
+  .calibration-guide ol li { margin-bottom: 6px; }
+  .calibration-guide .highlight { color: #ffd166; font-weight: 600; }
+
+  .section-divider {
+    text-align: center;
+    color: #555;
+    font-size: 0.8em;
+    margin: 20px 0;
+    position: relative;
+  }
+  .section-divider::before, .section-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: #333;
+  }
+  .section-divider::before { left: 0; }
+  .section-divider::after { right: 0; }
+
+  .log-section {
+    background: #1a1a2a;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 24px;
+  }
+  .log-section h3 { color: #6baaff; margin-bottom: 8px; font-size: 1em; }
+  .log-section p { font-size: 0.85em; color: #999; }
+  .log-field {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 8px 0;
+    font-size: 0.85em;
+    color: #666;
+    font-style: italic;
+  }
+
+  .run-block {
+    background: #2a1a1a;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .run-header {
+    background: #ff6b6b;
+    color: #fff;
+    padding: 14px 20px;
+    font-weight: 800;
+    font-size: 1em;
+  }
+  .run-body { padding: 16px; font-size: 0.9em; color: #ccc; }
+  .run-body strong { color: #fff; }
+
+  .rest-block {
+    background: #1a1a2a;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #888;
+  }
+  .rest-block .emoji { font-size: 2em; margin-bottom: 8px; }
+
+  .checklist { list-style: none; padding: 0; margin: 12px 0; }
+  .checklist li {
+    padding: 8px 0;
+    border-bottom: 1px solid #222;
+    font-size: 0.9em;
+  }
+  .checklist li::before { content: '☐ '; color: #4ecdc4; font-size: 1.2em; }
+
+  footer {
+    text-align: center;
+    color: #555;
+    font-size: 0.75em;
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #222;
+  }
+
+  /* Collapsible */
+  details { margin-bottom: 10px; }
+  details summary {
+    cursor: pointer;
+    padding: 4px 0;
+    color: #4ecdc4;
+    font-size: 0.85em;
+  }
+  details[open] summary { margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<h1>SEMANA 1</h1>
+<p class="subtitle">Semana de calibración · 7-13 abril 2026</p>
+
+<!-- ===== VISTA SEMANAL ===== -->
+<div class="week-view">
+  <div class="day-row active">
+    <div class="day-label">LUN</div>
+    <div class="day-icon">🏋️</div>
+    <div class="day-text"><strong>Full Body A</strong> (gym)</div>
+  </div>
+  <div class="day-row">
+    <div class="day-label">MAR</div>
+    <div class="day-icon">🏃</div>
+    <div class="day-text">Carrera suave 25-30 min</div>
+  </div>
+  <div class="day-row rest">
+    <div class="day-label">MIÉ</div>
+    <div class="day-icon">🧘</div>
+    <div class="day-text">Descanso / movilidad en casa</div>
+  </div>
+  <div class="day-row active">
+    <div class="day-label">JUE</div>
+    <div class="day-icon">🏋️</div>
+    <div class="day-text"><strong>Full Body B</strong> (gym)</div>
+  </div>
+  <div class="day-row">
+    <div class="day-label">VIE</div>
+    <div class="day-icon">🏃</div>
+    <div class="day-text">Carrera con cambios de ritmo</div>
+  </div>
+  <div class="day-row">
+    <div class="day-label">SÁB</div>
+    <div class="day-icon">🏃</div>
+    <div class="day-text">Carrera larga suave 35-40 min</div>
+  </div>
+  <div class="day-row rest">
+    <div class="day-label">DOM</div>
+    <div class="day-icon">💤</div>
+    <div class="day-text">Descanso total</div>
+  </div>
+</div>
+
+<!-- ===== GUÍA DE CALIBRACIÓN ===== -->
+<div class="calibration-guide">
+  <h3>Cómo encontrar tu peso en cada máquina</h3>
+  <ol>
+    <li>Empieza con el <span class="highlight">peso más bajo</span> de la máquina</li>
+    <li>Haz 5 repeticiones. Si es muy fácil, sube 5-10 kg</li>
+    <li>Repite hasta que encuentres un peso donde las últimas 2-3 reps <span class="highlight">cuestan pero puedes hacerlas con buena forma</span></li>
+    <li>Ese es tu peso de trabajo. <span class="highlight">Apúntalo.</span></li>
+    <li>Es mejor quedarte corto que pasarte. Semana que viene subimos.</li>
+  </ol>
+</div>
+
+<!-- ===== FULL BODY A ===== -->
+<div class="session-block">
+  <div class="session-header">
+    SESIÓN 1 — FULL BODY A
+    <small>Lunes · ±45-55 minutos · Gym</small>
+  </div>
+  <div class="session-body">
+
+    <div class="section-divider">PIERNAS</div>
+
+    <div class="exercise-row">
+      <span class="ex-number">1</span>
+      <span class="ex-name">Prensa de Piernas</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">10-12</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">90 seg</div></div>
+      </div>
+      <div class="ex-note">Pies a la anchura de hombros en la plataforma. Baja hasta 90° en rodillas. No bloquees arriba.</div>
+    </div>
+
+    <div class="exercise-row">
+      <span class="ex-number">2</span>
+      <span class="ex-name">Curl Femoral Tumbado</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">10-12</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">60 seg</div></div>
+      </div>
+      <div class="ex-note">No levantes la cadera del banco. Aprieta 1 seg arriba.</div>
+    </div>
+
+    <div class="section-divider">PECHO + ESPALDA</div>
+
+    <div class="exercise-row">
+      <span class="ex-number">3</span>
+      <span class="ex-name">Press de Pecho en Máquina</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">10-12</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">90 seg</div></div>
+      </div>
+      <div class="ex-note">Agarres a la altura del pecho. Junta los omóplatos contra el respaldo.</div>
+    </div>
+
+    <div class="exercise-row">
+      <span class="ex-number">4</span>
+      <span class="ex-name">Jalón al Pecho</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">10-12</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">90 seg</div></div>
+      </div>
+      <div class="ex-note">Agarre un poco más ancho que hombros. Tira los codos hacia abajo y atrás. No tires con los bíceps.</div>
+    </div>
+
+    <div class="section-divider">HOMBROS</div>
+
+    <div class="exercise-row">
+      <span class="ex-number">5</span>
+      <span class="ex-name">Press Hombro en Máquina</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">10-12</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">60 seg</div></div>
+      </div>
+      <div class="ex-note">No arquees la espalda baja. Si lo haces, baja peso.</div>
+    </div>
+
+    <div class="section-divider">CORE</div>
+
+    <div class="exercise-row">
+      <span class="ex-number">6</span>
+      <span class="ex-name">Plancha</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Tiempo</div><div class="value">20-40 seg</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">45 seg</div></div>
+      </div>
+      <div class="ex-note">Línea recta de cabeza a talones. Aprieta abdominales y glúteos. Si no aguantas 20 seg, hazla de rodillas.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== MARTES: CARRERA ===== -->
+<div class="run-block">
+  <div class="run-header">MARTES — CARRERA SUAVE</div>
+  <div class="run-body">
+    <strong>25-30 minutos a ritmo conversacional.</strong><br><br>
+    Deberías poder hablar frases completas mientras corres. Si no puedes, baja el ritmo.
+    Si necesitas andar un poco, anda. No hay prisa — el objetivo esta semana es mover el cuerpo sin machacarte.
+  </div>
+</div>
+
+<!-- ===== MIÉRCOLES: DESCANSO ===== -->
+<div class="rest-block">
+  <div class="emoji">🧘</div>
+  <strong>MIÉRCOLES — DESCANSO ACTIVO</strong><br>
+  <span style="font-size:0.85em;">Estiramientos suaves en casa (10-15 min) o simplemente descansar.<br>Si quieres, puedes hacer 2-3 series de plancha y rueda abdominal suave.</span>
+</div>
+
+<!-- ===== FULL BODY B ===== -->
+<div class="session-block">
+  <div class="session-header" style="background:#ffd166;color:#000;">
+    SESIÓN 2 — FULL BODY B
+    <small>Jueves · ±45-55 minutos · Gym</small>
+  </div>
+  <div class="session-body">
+
+    <div class="section-divider">PIERNAS</div>
+
+    <div class="exercise-row">
+      <span class="ex-number" style="background:#ffd166;">1</span>
+      <span class="ex-name">Extensión de Cuádriceps</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">12-15</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">60 seg</div></div>
+      </div>
+      <div class="ex-note">Almohadilla encima de los tobillos. Sube hasta arriba, baja en 2-3 seg. Sin impulso.</div>
+    </div>
+
+    <div class="exercise-row">
+      <span class="ex-number" style="background:#ffd166;">2</span>
+      <span class="ex-name">Hip Thrust en Máquina</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">10-12</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">60 seg</div></div>
+      </div>
+      <div class="ex-note">Aprieta glúteos arriba 2 seg. No arquees la espalda. Si no hay máquina, pregunta al monitor por alternativa.</div>
+    </div>
+
+    <div class="section-divider">ESPALDA + PECHO</div>
+
+    <div class="exercise-row">
+      <span class="ex-number" style="background:#ffd166;">3</span>
+      <span class="ex-name">Remo en Máquina</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">10-12</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">90 seg</div></div>
+      </div>
+      <div class="ex-note">Tira hacia el ombligo. Junta los omóplatos atrás. El torso no se mueve.</div>
+    </div>
+
+    <div class="exercise-row">
+      <span class="ex-number" style="background:#ffd166;">4</span>
+      <span class="ex-name">Pec Deck (Aperturas en Máquina)</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">12-15</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">60 seg</div></div>
+      </div>
+      <div class="ex-note">Movimiento lento. Aprieta pecho cuando los brazos están juntos. No abras hasta sentir dolor en hombros.</div>
+    </div>
+
+    <div class="section-divider">BRAZOS</div>
+
+    <div class="exercise-row">
+      <span class="ex-number" style="background:#ffd166;">5</span>
+      <span class="ex-name">Curl Bíceps en Polea</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">12-15</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">45 seg</div></div>
+      </div>
+      <div class="ex-note">Codos pegados al cuerpo. Solo se mueven los antebrazos. Si balanceas el cuerpo, baja peso.</div>
+    </div>
+
+    <div class="exercise-row">
+      <span class="ex-number" style="background:#ffd166;">6</span>
+      <span class="ex-name">Extensión Tríceps en Polea</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">12-15</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">45 seg</div></div>
+      </div>
+      <div class="ex-note">Codos quietos. Empuja hacia abajo y aprieta 1 seg. Inclínate un poco hacia delante.</div>
+    </div>
+
+    <div class="section-divider">HOMBROS + CORE</div>
+
+    <div class="exercise-row">
+      <span class="ex-number" style="background:#ffd166;">7</span>
+      <span class="ex-name">Face Pull (Polea)</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">15-20</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">6-7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">45 seg</div></div>
+      </div>
+      <div class="ex-note">Polea a la altura de la cara. Tira hacia la cara abriendo codos. Peso ligero, muchas reps.</div>
+    </div>
+
+    <div class="exercise-row">
+      <span class="ex-number" style="background:#ffd166;">8</span>
+      <span class="ex-name">Cable Crunch (Abdominales en Polea)</span>
+      <div class="ex-details">
+        <div class="ex-detail"><div class="label">Series</div><div class="value">3</div></div>
+        <div class="ex-detail"><div class="label">Reps</div><div class="value">12-15</div></div>
+        <div class="ex-detail"><div class="label">RPE objetivo</div><div class="value">7</div></div>
+        <div class="ex-detail"><div class="label">Descanso</div><div class="value">45 seg</div></div>
+      </div>
+      <div class="ex-note">De rodillas, enróllate hacia abajo. El movimiento sale de enrollar la columna, no de doblar la cadera.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== VIERNES: CARRERA ===== -->
+<div class="run-block">
+  <div class="run-header">VIERNES — CARRERA CON CAMBIOS DE RITMO</div>
+  <div class="run-body">
+    <strong>25-30 minutos total:</strong><br><br>
+    <ul style="padding-left:20px;">
+      <li>5 min trote suave (calentamiento)</li>
+      <li>4x (1 min ritmo rápido + 2 min trote suave)</li>
+      <li>5 min trote suave (vuelta a la calma)</li>
+    </ul>
+    <br>
+    "Ritmo rápido" = correr a un ritmo donde puedas decir palabras sueltas pero no frases completas. NO es sprint.
+  </div>
+</div>
+
+<!-- ===== SÁBADO: CARRERA ===== -->
+<div class="run-block">
+  <div class="run-header" style="background:#ff9f6b;">SÁBADO — CARRERA LARGA SUAVE</div>
+  <div class="run-body">
+    <strong>35-40 minutos a ritmo conversacional.</strong><br><br>
+    Tu tirada más larga de la semana. Ritmo cómodo donde puedas hablar sin problema.
+    Si quieres, puedes sustituir por bici o natación (30-40 min a ritmo suave).
+  </div>
+</div>
+
+<!-- ===== DOMINGO: DESCANSO ===== -->
+<div class="rest-block">
+  <div class="emoji">💤</div>
+  <strong>DOMINGO — DESCANSO TOTAL</strong><br>
+  <span style="font-size:0.85em;">Recupera. Duerme bien. Come bien. Vuelves el lunes.</span>
+</div>
+
+<!-- ===== REGISTRO DE LA SEMANA ===== -->
+<div class="log-section">
+  <h3>Después de cada sesión de gym</h3>
+  <p>Apúnta los pesos que has usado en cada ejercicio. Puedes hacerlo aquí mismo o mandármelo por chat y yo actualizo el log.</p>
+
+  <details>
+    <summary>Ejemplo de cómo apuntar la sesión</summary>
+    <div style="background:#111;padding:12px;border-radius:8px;font-size:0.85em;font-family:monospace;color:#ccc;margin-top:8px;">
+      Full Body A - Lunes<br>
+      Prensa piernas: 40 kg, 3x12, fácil<br>
+      Curl femoral: 20 kg, 3x10, bien<br>
+      Press pecho: 25 kg, 3x10, cuesta las últimas<br>
+      Jalón: 30 kg, 3x10, bien<br>
+      Press hombro: 15 kg, 3x10, justo<br>
+      Plancha: 3x25seg<br>
+      <br>
+      Me sentí bien, un poco perdido con las máquinas
+    </div>
+  </details>
+</div>
+
+<footer>
+  Programa: Semana 1 — Calibración<br>
+  Fran Álvarez · Abril 2026<br>
+  <br>
+  ¿Dudas con algún ejercicio? Consulta la Guía de Ejercicios<br>
+  o pregunta al monitor del gym.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Ejercicios — Fran</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f0f0f;
+    color: #e0e0e0;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 40px;
+    font-size: 0.95em;
+  }
+  .section-title {
+    font-size: 1.4em;
+    color: #4ecdc4;
+    border-bottom: 2px solid #4ecdc4;
+    padding-bottom: 8px;
+    margin: 40px 0 20px;
+  }
+  .exercise-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border-left: 4px solid #4ecdc4;
+  }
+  .exercise-card.home {
+    border-left-color: #ff6b6b;
+  }
+  .exercise-name {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .exercise-name-en {
+    font-size: 0.85em;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+  .badge-machine { background: #2d4a3e; color: #4ecdc4; }
+  .badge-db { background: #4a3d2d; color: #ffd166; }
+  .badge-cable { background: #2d3a4a; color: #6baaff; }
+  .badge-bodyweight { background: #4a2d4a; color: #d166ff; }
+  .badge-barbell { background: #4a2d2d; color: #ff6b6b; }
+  .badge-home { background: #4a3a2d; color: #ff9f6b; }
+  .badge-priority { background: #ff6b6b; color: #fff; }
+  .description {
+    margin: 12px 0;
+    color: #bbb;
+    font-size: 0.95em;
+  }
+  .how-to {
+    background: #111;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .how-to h4 {
+    color: #4ecdc4;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+  }
+  .how-to ol {
+    padding-left: 20px;
+    color: #ccc;
+    font-size: 0.9em;
+  }
+  .how-to ol li { margin-bottom: 6px; }
+  .tips {
+    background: #1a1a0a;
+    border-left: 3px solid #ffd166;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 0.85em;
+    color: #ddd;
+  }
+  .tips strong { color: #ffd166; }
+  .video-link {
+    display: inline-block;
+    background: #ff0000;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-top: 8px;
+    transition: opacity 0.2s;
+  }
+  .video-link:hover { opacity: 0.85; }
+  .muscle-diagram {
+    font-family: monospace;
+    background: #111;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    color: #4ecdc4;
+    font-size: 0.85em;
+    margin: 12px 0;
+    white-space: pre;
+  }
+  .intro-box {
+    background: #1a2a1a;
+    border: 1px solid #4ecdc4;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  .intro-box h3 { color: #4ecdc4; margin-bottom: 8px; }
+  .intro-box p { color: #bbb; font-size: 0.9em; }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .session-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+  }
+  .session-table th {
+    background: #222;
+    color: #4ecdc4;
+    padding: 10px;
+    text-align: left;
+    font-size: 0.85em;
+  }
+  .session-table td {
+    padding: 10px;
+    border-bottom: 1px solid #222;
+    font-size: 0.9em;
+  }
+  .rpe-guide {
+    background: #1a1a2a;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .rpe-guide h3 { color: #6baaff; margin-bottom: 12px; }
+  .rpe-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #222;
+    font-size: 0.9em;
+  }
+  .rpe-number {
+    font-weight: 700;
+    color: #fff;
+    min-width: 60px;
+  }
+  .rpe-desc { color: #bbb; }
+  footer {
+    text-align: center;
+    color: #555;
+    font-size: 0.8em;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #222;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Guía de Ejercicios</h1>
+<p class="subtitle">Fran Álvarez — Programa de inicio · Abril 2026</p>
+
+<div class="intro-box">
+  <h3>Antes de empezar</h3>
+  <p>Esta guía contiene SOLO los ejercicios que vas a hacer en tus primeras semanas.
+  No necesitas aprender 50 ejercicios — con estos 15-18 tienes de sobra para un programa
+  completo de Full Body. Cada ejercicio tiene una descripción paso a paso y un enlace
+  a vídeo para que veas la técnica correcta.</p>
+  <p style="margin-top:10px;">Como prefieres máquinas y eres principiante, he priorizado máquinas y
+  cables. Son más seguros, te guían el movimiento y te dejan centrarte en el esfuerzo
+  sin preocuparte de la estabilización.</p>
+</div>
+
+<div class="legend">
+  <span class="badge badge-machine">Máquina</span>
+  <span class="badge badge-cable">Cable</span>
+  <span class="badge badge-db">Mancuerna</span>
+  <span class="badge badge-barbell">Barra</span>
+  <span class="badge badge-bodyweight">Peso corporal</span>
+  <span class="badge badge-home">Se puede hacer en casa</span>
+</div>
+
+<!-- RPE GUIDE -->
+<div class="rpe-guide">
+  <h3>Escala RPE — Cómo medir el esfuerzo</h3>
+  <p style="color:#999;font-size:0.85em;margin-bottom:12px;">RPE = Rate of Perceived Exertion (Esfuerzo Percibido). Indica cuántas repeticiones te quedan "en la reserva" al acabar una serie.</p>
+  <div class="rpe-row"><span class="rpe-number">RPE 6</span><span class="rpe-desc">Podrías hacer 4 reps más. Calentamiento.</span></div>
+  <div class="rpe-row"><span class="rpe-number" style="color:#4ecdc4;">RPE 7</span><span class="rpe-desc">Podrías hacer 3 reps más. <strong style="color:#4ecdc4;">Tu zona objetivo al empezar.</strong></span></div>
+  <div class="rpe-row"><span class="rpe-number" style="color:#ffd166;">RPE 8</span><span class="rpe-desc">Podrías hacer 2 reps más. Zona de trabajo para hipertrofia.</span></div>
+  <div class="rpe-row"><span class="rpe-number" style="color:#ff6b6b;">RPE 9</span><span class="rpe-desc">Podrías hacer 1 rep más. Cerca del fallo.</span></div>
+  <div class="rpe-row"><span class="rpe-number" style="color:#ff0000;">RPE 10</span><span class="rpe-desc">No podrías hacer ni una más. Fallo muscular. Evitar por ahora.</span></div>
+</div>
+
+<!-- ============ PIERNAS ============ -->
+<h2 class="section-title">PIERNAS — Cuádriceps (parte delantera del muslo)</h2>
+
+<div class="exercise-card">
+  <div class="exercise-name">Prensa de Piernas</div>
+  <div class="exercise-name-en">Leg Press</div>
+  <span class="badge badge-machine">Máquina</span>
+  <span class="badge badge-priority">Ejercicio principal</span>
+  <div class="description">
+    Tu ejercicio principal de piernas. Trabaja cuádriceps, glúteos e isquiotibiales.
+    Al ser máquina, no necesitas preocuparte por el equilibrio — solo empujar.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Siéntate en la máquina con la espalda bien pegada al respaldo</li>
+      <li>Coloca los pies en la plataforma a la anchura de tus hombros, a media altura</li>
+      <li>Quita el seguro y baja la plataforma doblando las rodillas hasta que hagan ~90°</li>
+      <li>Empuja con los talones para subir la plataforma. NO bloquees las rodillas arriba del todo</li>
+      <li>Al acabar la serie, pon el seguro antes de salir</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> Que la zona lumbar (parte baja de la espalda) NO se despegue del respaldo.
+    Si se despega, estás bajando demasiado. Pies más arriba = más glúteo; más abajo = más cuádriceps.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=prensa+de+piernas+t%C3%A9cnica+correcta+principiante" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Extensión de Cuádriceps</div>
+  <div class="exercise-name-en">Leg Extension</div>
+  <span class="badge badge-machine">Máquina</span>
+  <div class="description">
+    Aislamiento de cuádriceps (la parte delantera del muslo). Máquina sencilla y segura.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Siéntate en la máquina y ajusta la almohadilla para que quede justo encima de tus tobillos</li>
+      <li>Agárrate a los agarres laterales</li>
+      <li>Estira las piernas hacia arriba hasta que queden casi rectas</li>
+      <li>Baja controlado (2-3 segundos bajando)</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> No uses impulso para subir. Si necesitas impulsarte, baja el peso.
+    Aprieta arriba del todo 1 segundo.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=extensi%C3%B3n+de+cu%C3%A1driceps+m%C3%A1quina+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Sentadilla Goblet</div>
+  <div class="exercise-name-en">Goblet Squat</div>
+  <span class="badge badge-db">Mancuerna</span>
+  <span class="badge badge-home">Se puede hacer en casa</span>
+  <div class="description">
+    La forma más sencilla de sentadilla. Sujetas una mancuerna contra el pecho y te sientas.
+    Perfecta para aprender el patrón de movimiento de sentadilla sin barra.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Coge una mancuerna verticalmente y sujétala contra tu pecho con ambas manos (como si sujetaras un cáliz/copa)</li>
+      <li>Pies a la anchura de hombros, puntas ligeramente hacia fuera</li>
+      <li>Siéntate hacia atrás y abajo, como si fueras a sentarte en una silla baja</li>
+      <li>Baja hasta que tus codos toquen (o casi) el interior de tus rodillas</li>
+      <li>Empuja con los talones para subir</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> Pecho arriba, mirada al frente. Las rodillas siguen la dirección de las puntas de los pies.
+    Si tus talones se despegan del suelo, pon unas pequeñas placas/discos debajo.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=goblet+squat+t%C3%A9cnica+principiante+espa%C3%B1ol" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<!-- ============ PIERNAS POSTERIOR ============ -->
+<h2 class="section-title">PIERNAS — Isquiotibiales y glúteos (parte trasera)</h2>
+
+<div class="exercise-card">
+  <div class="exercise-name">Curl Femoral Tumbado</div>
+  <div class="exercise-name-en">Lying Leg Curl</div>
+  <span class="badge badge-machine">Máquina</span>
+  <span class="badge badge-priority">Ejercicio principal</span>
+  <div class="description">
+    Trabaja la parte trasera del muslo (isquiotibiales). Fundamental para equilibrar
+    el trabajo de cuádriceps y proteger las rodillas.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Túmbate boca abajo en la máquina</li>
+      <li>Ajusta la almohadilla para que quede justo por encima de los talones (en el tendón de Aquiles)</li>
+      <li>Dobla las piernas llevando los talones hacia el glúteo</li>
+      <li>Baja controlado sin dejar que el peso caiga de golpe</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> No levantes la cadera del banco. Si la levantas, hay demasiado peso.
+    Aprieta arriba 1 segundo.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=curl+femoral+tumbado+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Hip Thrust en Máquina</div>
+  <div class="exercise-name-en">Machine Hip Thrust</div>
+  <span class="badge badge-machine">Máquina</span>
+  <div class="description">
+    El mejor ejercicio para glúteos. Si tu gym tiene máquina de hip thrust, úsala.
+    Si no, se puede hacer con barra y banco (te lo explico si es necesario).
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Siéntate en la máquina con la espalda apoyada en la almohadilla</li>
+      <li>Pies planos en el suelo, rodillas a 90° en la posición final</li>
+      <li>Empuja con los talones para subir la cadera hasta que el cuerpo forme una línea recta</li>
+      <li>Aprieta los glúteos arriba 1-2 segundos</li>
+      <li>Baja controlado</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> No arquees la espalda arriba. Piensa en "apretar el culo" al máximo
+    en la posición alta. La fuerza sale de los glúteos, no de la lumbar.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=hip+thrust+m%C3%A1quina+t%C3%A9cnica+correcta" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Peso Muerto Rumano con Mancuernas</div>
+  <div class="exercise-name-en">Dumbbell Romanian Deadlift (RDL)</div>
+  <span class="badge badge-db">Mancuerna</span>
+  <span class="badge badge-home">Se puede hacer en casa</span>
+  <div class="description">
+    Trabaja isquiotibiales, glúteos y la cadena posterior. Con mancuernas es más
+    accesible que con barra para empezar. Es un ejercicio de "bisagra de cadera".
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>De pie, con una mancuerna en cada mano, brazos colgando delante de los muslos</li>
+      <li>Con las rodillas ligeramente flexionadas (no rectas), empuja la cadera hacia ATRÁS</li>
+      <li>Deja que las mancuernas bajen pegadas a tus piernas, como si las deslizaras por los muslos</li>
+      <li>Baja hasta que sientas un estiramiento fuerte en la parte trasera del muslo</li>
+      <li>Aprieta glúteos para volver a subir</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> La espalda se mantiene recta/plana TODO el rato. Si se redondea, has bajado
+    demasiado o tienes demasiado peso. Piensa en "empujar el culo hacia la pared de atrás".
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=peso+muerto+rumano+mancuernas+principiante" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<!-- ============ PECHO ============ -->
+<h2 class="section-title">PECHO</h2>
+
+<div class="exercise-card">
+  <div class="exercise-name">Press de Pecho en Máquina</div>
+  <div class="exercise-name-en">Machine Chest Press</div>
+  <span class="badge badge-machine">Máquina</span>
+  <span class="badge badge-priority">Ejercicio principal</span>
+  <div class="description">
+    Tu ejercicio principal de pecho. Es el movimiento del "press de banca" pero en máquina:
+    más seguro, sin necesidad de compañero, y te guía el recorrido.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Ajusta el asiento para que los agarres queden a la altura de tu pecho (línea de los pezones)</li>
+      <li>Siéntate con la espalda bien pegada al respaldo, pies en el suelo</li>
+      <li>Empuja los agarres hacia delante hasta estirar los brazos (sin bloquear codos)</li>
+      <li>Vuelve controlado hasta que sientas un estiramiento en el pecho</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> No dejes que los hombros se vayan hacia delante. Saca pecho y junta
+    las escápulas (omóplatos) contra el respaldo. Eso protege los hombros.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=press+pecho+m%C3%A1quina+t%C3%A9cnica+correcta" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Aperturas en Máquina (Pec Deck)</div>
+  <div class="exercise-name-en">Pec Deck / Machine Fly</div>
+  <span class="badge badge-machine">Máquina</span>
+  <div class="description">
+    Aislamiento de pecho. Buen complemento al press para trabajar la contracción
+    del pectoral sin involucrar tanto tríceps.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Siéntate en la máquina con la espalda apoyada</li>
+      <li>Ajusta los brazos/almohadillas para que queden a la altura del pecho</li>
+      <li>Con los codos ligeramente flexionados, junta los brazos delante de ti</li>
+      <li>Aprieta el pecho 1 segundo cuando los brazos están juntos</li>
+      <li>Abre controlado hasta sentir estiramiento (sin dolor en hombros)</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> Movimiento lento y controlado. No abras tanto que sientas dolor
+    en los hombros — busca un estiramiento cómodo.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=pec+deck+aperturas+m%C3%A1quina+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<!-- ============ ESPALDA ============ -->
+<h2 class="section-title">ESPALDA</h2>
+
+<div class="exercise-card">
+  <div class="exercise-name">Jalón al Pecho (Polea Alta)</div>
+  <div class="exercise-name-en">Lat Pulldown</div>
+  <span class="badge badge-machine">Máquina</span>
+  <span class="badge badge-priority">Ejercicio principal</span>
+  <div class="description">
+    Tu ejercicio principal de espalda. Es la versión en máquina de las dominadas.
+    Trabaja los dorsales (los músculos grandes de la espalda que te dan la forma de "V").
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Siéntate en la máquina y ajusta las almohadillas de los muslos para que te sujeten</li>
+      <li>Agarra la barra un poco más ancho que tus hombros, palmas mirando hacia delante</li>
+      <li>Inclínate ligeramente hacia atrás (10-15°)</li>
+      <li>Tira de la barra hacia la parte alta del pecho, llevando los codos hacia abajo y atrás</li>
+      <li>Sube controlado sin dejar que el peso tire de ti</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> Piensa en "meter los codos en los bolsillos traseros". NO tires con
+    los bíceps — inicia el tirón con la espalda. Si no notas la espalda, prueba agarre más ancho
+    o menos peso.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=jal%C3%B3n+al+pecho+t%C3%A9cnica+correcta+principiante" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Remo en Máquina</div>
+  <div class="exercise-name-en">Machine Row / Seated Cable Row</div>
+  <span class="badge badge-machine">Máquina</span>
+  <span class="badge badge-priority">Ejercicio principal</span>
+  <div class="description">
+    Complementa al jalón. El jalón tira hacia abajo; el remo tira hacia ti.
+    Juntos trabajan la espalda completa.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Siéntate en la máquina/polea de remo con el pecho contra la almohadilla (si la tiene)</li>
+      <li>Agarra los mangos</li>
+      <li>Tira de los mangos hacia tu ombligo/costillas, apretando los omóplatos al final</li>
+      <li>Mantén 1 segundo con los omóplatos juntos</li>
+      <li>Suelta controlado hacia delante</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> No te eches hacia atrás para tirar — tu torso se queda quieto.
+    Si necesitas echar el cuerpo, baja el peso. Piensa en juntar los omóplatos al tirar.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=remo+m%C3%A1quina+sentado+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<!-- ============ HOMBROS ============ -->
+<h2 class="section-title">HOMBROS</h2>
+
+<div class="exercise-card">
+  <div class="exercise-name">Press de Hombro en Máquina</div>
+  <div class="exercise-name-en">Seated Machine Shoulder Press</div>
+  <span class="badge badge-machine">Máquina</span>
+  <span class="badge badge-priority">Ejercicio principal</span>
+  <div class="description">
+    Tu ejercicio principal de hombros. Empujas hacia arriba, trabaja deltoides
+    (hombros) y tríceps.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Ajusta el asiento para que los agarres empiecen a la altura de tus orejas</li>
+      <li>Espalda pegada al respaldo, pies en el suelo</li>
+      <li>Empuja hacia arriba sin bloquear codos arriba del todo</li>
+      <li>Baja controlado hasta la posición inicial</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> No arquees la espalda baja para empujar más. Si necesitas arquearla,
+    baja el peso. Los hombros son un músculo pequeño — no esperes mover mucho peso aquí.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=press+hombro+m%C3%A1quina+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Elevaciones Laterales con Mancuerna</div>
+  <div class="exercise-name-en">Dumbbell Lateral Raise</div>
+  <span class="badge badge-db">Mancuerna</span>
+  <span class="badge badge-home">Se puede hacer en casa</span>
+  <div class="description">
+    Aislamiento del deltoides lateral — el músculo que te da la anchura de hombros.
+    Se hace con pesos ligeros.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>De pie, una mancuerna ligera en cada mano, brazos a los lados</li>
+      <li>Con los codos ligeramente flexionados, sube los brazos hacia los lados</li>
+      <li>Sube hasta que los brazos queden paralelos al suelo (forma de "T")</li>
+      <li>Baja controlado (3 segundos bajando)</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> Usa poco peso. En serio, menos del que crees. Si necesitas balancear
+    el cuerpo para subir las mancuernas, pesa demasiado. Empieza con 3-4 kg.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=elevaciones+laterales+mancuerna+t%C3%A9cnica+principiante" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Face Pull (Polea)</div>
+  <div class="exercise-name-en">Cable Face Pull</div>
+  <span class="badge badge-cable">Cable</span>
+  <div class="description">
+    Trabaja la parte trasera del hombro y los músculos entre los omóplatos.
+    Fundamental para la salud del hombro y la postura — especialmente si
+    pasas horas sentado.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Pon la polea a la altura de tu cara</li>
+      <li>Usa la cuerda (accesorio con dos extremos)</li>
+      <li>Da un paso atrás, brazos estirados delante de ti</li>
+      <li>Tira de la cuerda hacia tu cara, abriendo los codos hacia fuera</li>
+      <li>En la posición final, tus manos deben estar a los lados de tu cabeza y los codos altos</li>
+      <li>Vuelve controlado</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> No es un ejercicio de fuerza — es de activación y salud articular.
+    Peso ligero, muchas reps (12-20), aprieta 2 segundos atrás.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=face+pull+polea+t%C3%A9cnica+correcta+espa%C3%B1ol" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<!-- ============ BRAZOS ============ -->
+<h2 class="section-title">BRAZOS</h2>
+
+<div class="exercise-card">
+  <div class="exercise-name">Curl de Bíceps con Cable</div>
+  <div class="exercise-name-en">Cable Curl</div>
+  <span class="badge badge-cable">Cable</span>
+  <div class="description">
+    Bíceps con polea. La ventaja del cable es que mantiene tensión constante
+    durante todo el recorrido (a diferencia de la mancuerna).
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Pon la polea abajo del todo, engancha una barra recta o barra EZ</li>
+      <li>Agarra la barra con las palmas hacia arriba, brazos estirados</li>
+      <li>Sin mover los codos (que se quedan pegados a los costados), dobla los brazos subiendo la barra</li>
+      <li>Aprieta arriba 1 segundo</li>
+      <li>Baja controlado</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> Los codos no se mueven. Si los adelantas para subir el peso,
+    es demasiado. Cuerpo quieto, solo se mueven los antebrazos.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=curl+b%C3%ADceps+cable+polea+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Extensión de Tríceps en Polea</div>
+  <div class="exercise-name-en">Cable Tricep Pushdown</div>
+  <span class="badge badge-cable">Cable</span>
+  <div class="description">
+    Tríceps con polea. Trabaja la parte trasera del brazo (el tríceps es 2/3 del
+    volumen del brazo — más grande que el bíceps).
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Pon la polea arriba del todo, engancha la cuerda o barra recta</li>
+      <li>Agarra el accesorio, codos pegados a los costados, antebrazos apuntando hacia arriba</li>
+      <li>Sin mover los codos, estira los brazos empujando hacia abajo</li>
+      <li>Aprieta abajo 1 segundo (si usas cuerda, abre los extremos al final)</li>
+      <li>Sube controlado sin que los codos se separen del cuerpo</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> Mismo principio que el curl: los codos se quedan quietos.
+    Solo se mueven los antebrazos. Inclínate ligeramente hacia delante.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=extensi%C3%B3n+tr%C3%ADceps+polea+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<!-- ============ CORE ============ -->
+<h2 class="section-title">CORE (ABDOMINALES Y ESTABILIDAD)</h2>
+
+<div class="exercise-card home">
+  <div class="exercise-name">Plancha</div>
+  <div class="exercise-name-en">Plank</div>
+  <span class="badge badge-bodyweight">Peso corporal</span>
+  <span class="badge badge-home">Se puede hacer en casa</span>
+  <div class="description">
+    Ejercicio isométrico (mantener posición) que trabaja todo el core: abdominales,
+    oblicuos, espalda baja. La base de la estabilidad.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Apóyate en antebrazos y puntas de los pies</li>
+      <li>Tu cuerpo debe formar una línea recta de cabeza a talones</li>
+      <li>Aprieta abdominales y glúteos para mantener la posición</li>
+      <li>Mantén 20-60 segundos (lo que puedas con buena forma)</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> NO dejes que la cadera se hunda (parece una hamaca) ni que suba
+    demasiado (forma de montaña). Línea recta. Si no aguantas 20 seg, empieza de rodillas.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=plancha+abdominal+t%C3%A9cnica+correcta" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card home">
+  <div class="exercise-name">Rueda Abdominal</div>
+  <div class="exercise-name-en">Ab Wheel Rollout</div>
+  <span class="badge badge-home">Se puede hacer en casa</span>
+  <div class="description">
+    Ejercicio avanzado de core. Tienes la rueda en casa — es uno de los mejores
+    ejercicios de abdominales que existen. Empezaremos de rodillas.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>De rodillas en la alfombra, agarra la rueda con ambas manos</li>
+      <li>Empieza con la rueda debajo de tus hombros</li>
+      <li>Rueda hacia delante estirando el cuerpo, controlando con el abdomen</li>
+      <li>Llega hasta donde puedas SIN que la espalda baja se hunda</li>
+      <li>Tira con el abdomen para volver a la posición inicial</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> CUIDADO con ir demasiado lejos al principio — te puedes dañar la
+    espalda baja. Empieza con un recorrido corto y ve alargando semana a semana.
+    Si te duele la lumbar, estás yendo demasiado lejos.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=rueda+abdominal+principiante+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<div class="exercise-card">
+  <div class="exercise-name">Crunch en Polea (Cable Crunch)</div>
+  <div class="exercise-name-en">Cable Crunch</div>
+  <span class="badge badge-cable">Cable</span>
+  <div class="description">
+    Abdominales con peso progresivo. A diferencia de los crunches normales,
+    con la polea puedes ir subiendo peso semana a semana.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Pon la polea arriba, engancha la cuerda</li>
+      <li>Arrodíllate frente a la polea, sujeta la cuerda detrás de la cabeza</li>
+      <li>Enrolla el tronco hacia abajo, llevando los codos hacia las rodillas</li>
+      <li>Aprieta los abdominales abajo 1-2 segundos</li>
+      <li>Sube controlado</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> El movimiento sale de enrollar/flexionar la columna, NO de doblar
+    la cadera. Piensa en "enrollarte como una bola". Si tiras con los brazos, estás
+    haciéndolo mal.
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=cable+crunch+polea+abdominales+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<!-- ============ GEMELOS ============ -->
+<h2 class="section-title">GEMELOS</h2>
+
+<div class="exercise-card">
+  <div class="exercise-name">Elevación de Gemelos en Máquina</div>
+  <div class="exercise-name-en">Standing/Seated Calf Raise</div>
+  <span class="badge badge-machine">Máquina</span>
+  <div class="description">
+    Gemelos. Simple: te pones de puntillas con peso. Lo incluimos 1-2 veces
+    por semana al final de la sesión.
+  </div>
+  <div class="how-to">
+    <h4>Cómo hacerlo:</h4>
+    <ol>
+      <li>Coloca las puntas de los pies en el borde de la plataforma, talones colgando</li>
+      <li>Baja los talones todo lo que puedas (estiramiento)</li>
+      <li>Sube de puntillas todo lo que puedas (contracción)</li>
+      <li>Mantén arriba 1-2 segundos</li>
+      <li>Baja lento (3 segundos)</li>
+    </ol>
+  </div>
+  <div class="tips">
+    <strong>Clave:</strong> Recorrido completo — desde abajo del todo hasta arriba del todo.
+    La mayoría de la gente hace medio recorrido y no progresa. Los gemelos responden
+    bien a muchas repeticiones (12-20).
+  </div>
+  <a class="video-link" href="https://www.youtube.com/results?search_query=elevaci%C3%B3n+gemelos+m%C3%A1quina+t%C3%A9cnica" target="_blank">Buscar vídeo en YouTube</a>
+</div>
+
+<!-- ============ RESUMEN ============ -->
+<h2 class="section-title">RESUMEN — TUS EJERCICIOS</h2>
+
+<table class="session-table">
+  <tr>
+    <th>Grupo</th>
+    <th>Ejercicio principal</th>
+    <th>Accesorio</th>
+    <th>Tipo</th>
+  </tr>
+  <tr>
+    <td>Cuádriceps</td>
+    <td>Prensa de piernas</td>
+    <td>Extensión de cuádriceps / Goblet squat</td>
+    <td>Máquina / DB</td>
+  </tr>
+  <tr>
+    <td>Isquio/Glúteo</td>
+    <td>Curl femoral</td>
+    <td>Hip thrust / RDL con DB</td>
+    <td>Máquina / DB</td>
+  </tr>
+  <tr>
+    <td>Pecho</td>
+    <td>Press pecho máquina</td>
+    <td>Pec deck</td>
+    <td>Máquina</td>
+  </tr>
+  <tr>
+    <td>Espalda</td>
+    <td>Jalón al pecho</td>
+    <td>Remo en máquina</td>
+    <td>Máquina</td>
+  </tr>
+  <tr>
+    <td>Hombros</td>
+    <td>Press hombro máquina</td>
+    <td>Elevaciones laterales / Face pull</td>
+    <td>Máquina / DB / Cable</td>
+  </tr>
+  <tr>
+    <td>Bíceps</td>
+    <td>Curl cable</td>
+    <td>—</td>
+    <td>Cable</td>
+  </tr>
+  <tr>
+    <td>Tríceps</td>
+    <td>Pushdown cable</td>
+    <td>—</td>
+    <td>Cable</td>
+  </tr>
+  <tr>
+    <td>Core</td>
+    <td>Plancha / Rueda ab</td>
+    <td>Cable crunch</td>
+    <td>BW / Cable</td>
+  </tr>
+  <tr>
+    <td>Gemelos</td>
+    <td>Elevación gemelos máquina</td>
+    <td>—</td>
+    <td>Máquina</td>
+  </tr>
+</table>
+
+<footer>
+  Guía creada para Fran Álvarez — Abril 2026<br>
+  Programa de inicio: prioridad máquinas y cables
+</footer>
+
+</div>
+</body>
+</html>
